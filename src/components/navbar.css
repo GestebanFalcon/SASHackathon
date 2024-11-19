@@ -1,9 +1,43 @@
 .navBase {
     display: flex;
     width: 100%;
-    height: 5rem;
-    background-color: #A39BA8;
-    justify-content: center;
+    height: 4rem;
+    background-color: #3423A6;
     align-items: center;
+    font-size: larger;
+    font-weight: 600;
 
+}
+
+.navLeft {
+    margin-left: 2rem
+}
+
+.navRight {
+    margin-right: 4rem;
+    margin-left: auto
+}
+
+.navLink {
+    text-decoration: none;
+    color: #EDF5FC;
+
+
+}
+
+.registerLink {
+    text-decoration: none;
+    color: #EDF5FC;
+    background-color: #7180B9;
+    font-weight: 500;
+    padding: 7px;
+    border: 2px solid;
+    border-color: #7180B9;
+    border-radius: 4px;
+
+
+}
+
+.registerLink:hover {
+    background-color: #2E1760
 }

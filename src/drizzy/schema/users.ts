@@ -22,6 +22,8 @@ export const users = pgTable("user", {
     email: text("email").unique(),
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     image: text("image"),
+    campus: text("campus"),
+    hashedPassword: text("hashed_password"),
 
     projectId: uuid('project_id').references(() => projects.id),
     projectAdmin: boolean('project_admin'),
