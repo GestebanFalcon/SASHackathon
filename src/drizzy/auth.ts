@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { db } from "@/drizzy/db";
-import { accounts, sessions, users, verificationTokens } from "@/drizzy/schema/users";
+import { accounts, users } from "@/drizzy/schema/users";
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";
 import { config } from "dotenv";
 import Credentials from "next-auth/providers/credentials";
@@ -14,9 +14,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: DrizzleAdapter(db, {
         usersTable: users,
         accountsTable: accounts,
-        sessionsTable: sessions,
-        verificationTokensTable: verificationTokens
     }),
+    session: {
+        strategy: "jwt"
+    },
     providers: [
         MicrosoftEntraID,
         Credentials({
@@ -27,18 +28,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             authorize: async (credentials) => {
                 const { email, password } = credentials;
 
+                console.log(`${email} - ${password}`);
+
                 if (typeof email !== "string" || typeof password !== "string") {
                     throw new Error("Invalid credentials");
                 }
 
                 const user = await getUserByEmail(email);
-
+                console.log(user);
                 if (!user?.hashedPassword) {
+                    console.log("aww man")
                     throw new Error("Invalid credentials");
                 }
                 if (!bcrypt.compare(password, user.hashedPassword)) {
+                    console.log("Aww man")
                     throw new Error("Invalid credentials");
                 }
+                console.log("awesome")
 
                 return user;
             }

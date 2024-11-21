@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import { UserData } from "@/types/userData";
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 
@@ -27,7 +28,7 @@ export default function Page() {
             method: "POST",
             body: JSON.stringify({ data })
         });
-        // router.push("/auth/login");
+        router.push("/auth/login");
     }
 
     return (
@@ -36,9 +37,9 @@ export default function Page() {
 
                 <form onSubmit={handleSubmit}>
                     <h1>Register</h1>
-                    <TextField label="Full Name" value={data.name} onChange={e => { setData({ ...data, name: e.target.value }) }} />
-                    <TextField label="Email" value={data.email} onChange={e => { setData({ ...data, email: e.target.value }) }} />
-                    <TextField label="Password" value={data.password} onChange={e => { setData({ ...data, password: e.target.value }) }} />
+                    <TextField label="Full Name" type="text" value={data.name} onChange={e => { setData({ ...data, name: e.target.value }) }} />
+                    <TextField label="Email" type="email" value={data.email} onChange={e => { setData({ ...data, email: e.target.value }) }} />
+                    <TextField label="Password" type="password" value={data.password} onChange={e => { setData({ ...data, password: e.target.value }) }} />
                     <FormControl fullWidth={true}>
                         <InputLabel id="campusLabel">Campus</InputLabel>
                         <Select labelId="campusLabel" value={data.campus} onChange={e => { setData({ ...data, campus: e.target.value }) }}>
@@ -53,6 +54,7 @@ export default function Page() {
 
                     <Button fullWidth type="submit" color="success" variant="contained">Submit</Button>
                 </form>
+                <p className="yap">Already have an account? <Link href={"/auth/login"}>Log In</Link></p>
 
             </section>
         </div>
