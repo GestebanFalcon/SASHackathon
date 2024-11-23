@@ -35,7 +35,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 }
 
                 const user = await getUserByEmail(email);
-                console.log(user);
                 if (!user?.hashedPassword) {
                     console.log("aww man")
                     throw new Error("Invalid credentials");
@@ -50,5 +49,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             }
         })
 
-    ]
+    ],
+    callbacks: {
+        async jwt({ token }) {
+            return token;
+        },
+        async session({ token, session }) {
+            if (token.id && session.user) {
+                session.user.id = token.id as string;
+            }
+
+            return session;
+        }
+    }
 });

@@ -5,7 +5,6 @@ import { auth } from "@/drizzy/auth"
 export default async function Navbar() {
 
     const session = await auth()
-    console.log(session);
 
     return (
         <nav className="navBase">
@@ -14,7 +13,7 @@ export default async function Navbar() {
             </div>
             <div className="navRight">
                 {session ? (
-                    <Link href={`/user/${session.user?.id}/dashboard`} className="registerLink">{session.user?.name}</Link>
+                    <Link href={`/user/dashboard`} className="registerLink">{session.user?.name}</Link>
                 ) : (
                     <Link href={"/auth/login"} className="registerLink">Sign In</Link>
                 )}

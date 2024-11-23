@@ -3,5 +3,6 @@ import { SelectUser, users } from "@/drizzy/schema/users";
 import { eq } from "drizzle-orm";
 
 export default async function updateUser(id: SelectUser["id"], updatedUser: Partial<Omit<SelectUser, "id">>) {
-    await db.update(users).set(updatedUser).where(eq(users.id, id));
+    const [user] = await db.update(users).set(updatedUser).where(eq(users.id, id)).returning();
+    return user;
 }
