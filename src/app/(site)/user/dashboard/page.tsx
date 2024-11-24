@@ -7,6 +7,7 @@ export default async function Page() {
     const session = await auth();
     const id = session?.user?.id;
     if (!id) {
+        console.log("crud")
         redirect("/auth/login");
     }
     const user = await getUserById(id);

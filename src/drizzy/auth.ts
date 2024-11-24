@@ -37,11 +37,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
                 const user = await getUserByEmail(email);
                 if (!user?.hashedPassword) {
-                    console.log("aww man")
+                    console.log("aww man");
                     throw new Error("Invalid credentials");
                 }
-                if (!bcrypt.compare(password, user.hashedPassword)) {
-                    console.log("Aww man")
+
+                const correctPassword = await bcrypt.compare(password, user.hashedPassword);
+                console.log(correctPassword);
+                if (!correctPassword) {
+                    console.log("Aww man");
                     throw new Error("Invalid credentials");
                 }
                 console.log("awesome")
@@ -63,11 +66,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             if (user.projectId) token.projectId = user.projectId;
             if (user.projectAdmin) token.projectAdmin = user.projectAdmin;
 
+
+            console.log("redoing token");
             return token;
 
         },
         async session({ token, session }) {
-            console.log(token);
+            // console.log(token);
             if (token.id && session.user) {
                 session.user.id = token.id as string;
             }
