@@ -8,7 +8,7 @@ export default async function Page() {
 
     const loginAction = async (formData: FormData) => {
         "use server"
-
+        
         await signIn("credentials", formData);
         redirect("/");
     }

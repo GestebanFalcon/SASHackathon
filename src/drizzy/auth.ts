@@ -7,6 +7,7 @@ import { config } from "dotenv";
 import Credentials from "next-auth/providers/credentials";
 import getUserByEmail from "./queries/users/getUserByEmail";
 import bcrypt from "bcrypt";
+import getUserById from "./queries/users/getUserById";
 
 config({ path: ".env.local" });
 
@@ -52,9 +53,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     ],
     callbacks: {
         async jwt({ token }) {
+
+            if (!token.sub) return token;
+            const id = token.sub;
+
+            const user = await getUserById(id);
+
+            if (user.campus) token.campus = user.campus;
+            if (user.projectId) token.projectId = user.projectId;
+            if (user.projectAdmin) token.projectAdmin = user.projectAdmin;
+
             return token;
+
         },
         async session({ token, session }) {
+            console.log(token);
             if (token.id && session.user) {
                 session.user.id = token.id as string;
             }

@@ -1,4 +1,5 @@
 "use client"
+
 import { ReactNode, useState } from "react";
 import { SelectUser } from "@/drizzy/schema/users";
 import EditIcon from '@mui/icons-material/Edit';
@@ -7,55 +8,29 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { CircularProgress, Divider, TextField, Tooltip } from "@mui/material";
 import { useFormStatus } from "react-dom";
+import { ExtendedUser } from "@/next-auth";
 
-export default function InfoItem({ label, children, key, updateAction }: {
-    label: string, children: any, key: keyof SelectUser, updateAction: (data: {
-        email?: string;
-        campus?: string;
-        name?: string;
-    }) => Promise<{
-        email: string | null;
-        campus: string | null;
-        name: string | null;
-    }>
+export default function InfoItem({ value, updateData, saveData, label }: {
+    value: string | boolean | null | undefined, label: string, updateData: Function, saveData: () => Promise<boolean>
 }) {
-    "use client"
-    const { pending } = useFormStatus()
+
     const [isEditing, setIsEditing] = useState(false);
-    const [value, setValue] = useState(children)
-
-
+    const { pending } = useFormStatus();
 
     return (
         <>
-            <li className="info" key={key}>
+            <li className="info">
                 <p className="label">{label}</p>
                 <div className="value">{isEditing ? (
-                    <TextField type="text" value={value} onChange={e => { setValue(e.target.value) }} />
+                    <TextField type="text" value={value} onChange={e => { updateData(e.target.value) }} />
                 ) : value}</div>
 
                 {isEditing ? (
                     <Tooltip title="Save" className="mouse">
                         <button
                             onClick={async e => {
-                                try {
-
-                                    const updateSettings: any = {};
-                                    updateSettings[key] = value;
-                                    const newUser: any = await updateAction(updateSettings);
-                                    console.log(newUser);
-                                    const newValue = newUser[key]
-                                    if (newValue) {
-                                        setIsEditing(false);
-                                    } else {
-                                        throw new Error("value doesn't exist")
-                                    }
-
-                                } catch (error) {
-                                    setValue(children);
-                                    console.error(error);
-                                }
-
+                                const saved = await saveData();
+                                if (saved) setIsEditing(false);
                             }}
                             disabled={pending}>
 
@@ -75,7 +50,7 @@ export default function InfoItem({ label, children, key, updateAction }: {
                     </Tooltip>
                 )}
 
-            </li>
+            </li >
             <Divider component="li"></Divider>
         </>
     )

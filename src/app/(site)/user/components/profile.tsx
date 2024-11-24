@@ -1,40 +1,62 @@
+"use client"
+
 import { SelectUser } from "@/drizzy/schema/users";
 import { Divider, List, ListItem } from "@mui/material";
 import "../user.css";
 import InfoItem from "./infoItem";
 import updateUser from "@/drizzy/queries/users/updateUser";
+import { ExtendedUser } from "@/next-auth";
+import { useState } from "react";
+import { updateProfile } from "@/actions/updateProfile";
 
-type UserScopes = {
-    email: string,
-    name: string,
-    campus: string,
+export default function Profile({ user }: { user: ExtendedUser }) {
 
-}
+    const [userDb, setUserDb] = useState(user);
+    const [userData, setUserData] = useState(user)
 
-export default async function Profile({ user }: { user: SelectUser }) {
-
-    const keys = ["name", "campus", "email"] as Array<keyof SelectUser>;
-
-    const capitalize = (text: string) => {
-        return (text[0].toUpperCase() + text.slice(1));
-    }
-
-    const updateAction = async (data: { email?: string, campus?: string, name?: string }) => {
-        "use server"
-        const newUser = await updateUser(user.id, data);
+    const keys = ["name", "campus", "email"] as Array<keyof ExtendedUser>;
 
 
-        //dont want to give away spooky dangerous fields;
-        return { email: newUser.email, campus: newUser.campus, name: newUser.name }
+    const saveData = async () => {
+        try {
+            const newUser = await updateProfile(userData);
+            setUserDb(newUser);
+            return true;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+
     }
 
     return (
         <section className="profileOuter">
             <h1>User Info</h1>
             <List>
-                {keys.map((key) => (
-                    <InfoItem label={capitalize(key)} key={key} updateAction={updateAction}>{user[key] ? user[key] : ""}</InfoItem>
-                ))}
+                <InfoItem
+                    value={userData["email"]}
+                    updateData={(value: string) => {
+                        setUserData({ ...userData, email: value });
+                    }}
+                    saveData={saveData}
+                    label={"Email"}
+                />
+                <InfoItem
+                    value={userData["name"]}
+                    updateData={(value: string) => {
+                        setUserData({ ...userData, name: value });
+                    }}
+                    saveData={saveData}
+                    label={"Name"}
+                />
+                <InfoItem
+                    value={userData["campus"]}
+                    updateData={(value: string) => {
+                        setUserData({ ...userData, campus: value });
+                    }}
+                    saveData={saveData}
+                    label={"Campus"}
+                />
             </List>
         </section>
     )
