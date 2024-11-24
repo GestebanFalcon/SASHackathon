@@ -13,12 +13,12 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
 
         try {
             await signIn("credentials", formData);
-            redirect("/");
+
         } catch (error) {
             console.error(error);
             redirect("/auth/login?error=incorrect")
         }
-
+        redirect("/");
     }
 
     return (
