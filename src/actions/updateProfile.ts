@@ -23,6 +23,7 @@ export const updateProfile = async ({ id, name, email }: ExtendedUser) => {
     const newUser = await updateUser(id, { name, email });
 
 
+
     //dont want to give away spooky dangerous fields;
     return { email: newUser.email, campus: newUser.campus, name: newUser.name }
 }

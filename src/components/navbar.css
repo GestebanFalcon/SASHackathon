@@ -15,7 +15,10 @@
 
 .navRight {
     margin-right: 4rem;
-    margin-left: auto
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
 }
 
 .navLink {
@@ -40,4 +43,32 @@
 
 .registerLink:hover {
     background-color: #2E1760
+}
+
+.icon {
+    height: 28px;
+    width: 28px;
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
+.profilePic {
+    border-radius: 12px
+}
+
+.signOutButton {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }

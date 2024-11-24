@@ -32,14 +32,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 console.log(`${email} - ${password}`);
 
                 if (typeof email !== "string" || typeof password !== "string") {
-                    return null;
                     throw new Error("Invalid credentials");
                 }
 
                 const user = await getUserByEmail(email);
                 if (!user?.hashedPassword) {
                     console.log("aww man");
-                    return null;
                     throw new Error("Invalid credentials");
                 }
 
@@ -47,7 +45,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 console.log(correctPassword);
                 if (!correctPassword) {
                     console.log("Aww man");
-                    return null;
                     throw new Error("Invalid credentials");
                 }
                 console.log("awesome")
@@ -65,6 +62,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
             const user = await getUserById(id);
 
+            if (user.email) token.email = user.email;
+            if (user.name) token.name = user.name;
             if (user.campus) token.campus = user.campus;
             if (user.projectId) token.projectId = user.projectId;
             if (user.projectAdmin) token.projectAdmin = user.projectAdmin;
@@ -75,9 +74,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         },
         async session({ token, session }) {
-            // console.log(token);
-            if (token.id && session.user) {
-                session.user.id = token.id as string;
+            if (token.sub && session.user) {
+                session.user.id = token.sub as string;
+                session.user.campus = token.campus;
             }
 
             return session;

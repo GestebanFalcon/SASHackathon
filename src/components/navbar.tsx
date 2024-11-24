@@ -1,6 +1,8 @@
 import Link from "next/link"
 import "./navbar.css"
 import { auth } from "@/lib/drizzy/auth"
+import AuthWrapper from "./authWrapper"
+import ProfileButton from "./profileButton"
 
 export default async function Navbar() {
 
@@ -13,7 +15,7 @@ export default async function Navbar() {
             </div>
             <div className="navRight">
                 {session ? (
-                    <Link href={`/user/dashboard`} className="registerLink">{session.user?.name}</Link>
+                    <AuthWrapper><ProfileButton /></AuthWrapper>
                 ) : (
                     <Link href={"/auth/login"} className="registerLink">Sign In</Link>
                 )}

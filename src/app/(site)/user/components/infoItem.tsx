@@ -10,12 +10,11 @@ import { CircularProgress, Divider, TextField, Tooltip } from "@mui/material";
 import { useFormStatus } from "react-dom";
 import { ExtendedUser } from "@/next-auth";
 
-export default function InfoItem({ value, updateData, saveData, label }: {
-    value: string | boolean | null | undefined, label: string, updateData: Function, saveData: () => Promise<boolean>
+export default function InfoItem({ value, updateData, saveData, label, pending }: {
+    value: string | boolean | null | undefined, label: string, updateData: Function, saveData: () => Promise<boolean>, pending: boolean;
 }) {
 
     const [isEditing, setIsEditing] = useState(false);
-    const { pending } = useFormStatus();
 
     return (
         <>

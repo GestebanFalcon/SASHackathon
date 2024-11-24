@@ -1,35 +1,57 @@
 "use client"
 
 import { SelectUser } from "@/lib/drizzy/schema/users";
-import { Divider, List, ListItem } from "@mui/material";
+import { Button, Divider, List, ListItem, Skeleton, TextField } from "@mui/material";
 import "../user.css";
 import InfoItem from "./infoItem";
 import updateUser from "@/lib/drizzy/queries/users/updateUser";
 import { ExtendedUser } from "@/next-auth";
-import { useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { updateProfile } from "@/actions/updateProfile";
+import { useSession } from "next-auth/react";
 
-export default function Profile({ user }: { user: ExtendedUser }) {
+export default function Profile() {
 
-    const [userDb, setUserDb] = useState(user);
-    const [userData, setUserData] = useState(user)
+    const { data: session, update } = useSession();
+    // console.log(session);
+    // const user = session?.user;
+    // if (!user) {
+    //     return (
+    //         <section className="profileOuter">
+    //             <Skeleton variant="text"></Skeleton>
+    //             <Skeleton variant="rounded"></Skeleton>
+    //         </section>
+    //     )
+    // }
+
+    const [userData, setUserData] = useState<ExtendedUser>({});
+
+    const [pending, setTransition] = useTransition();
+
+    useEffect(() => {
+        if (session && session.user) {
+            setUserData(session.user);
+        }
+    }, [session])
 
     const keys = ["name", "campus", "email"] as Array<keyof ExtendedUser>;
 
-
     const saveData = async () => {
-        try {
-            const newUser = await updateProfile(userData);
-            setUserDb(newUser);
-            return true;
-        } catch (error) {
-            console.error(error);
-            return false;
+        setTransition(() => {
+            console.log(userData);
+            updateProfile(userData)
+                .then((res) => {
+                    console.log(res);
+                    update();
+                })
         }
+        )
 
+        return true;
     }
 
     return (
+        session &&
         <section className="profileOuter">
             <h1>User Info</h1>
             <List>
@@ -40,6 +62,7 @@ export default function Profile({ user }: { user: ExtendedUser }) {
                     }}
                     saveData={saveData}
                     label={"Email"}
+                    pending={pending}
                 />
                 <InfoItem
                     value={userData["name"]}
@@ -48,6 +71,7 @@ export default function Profile({ user }: { user: ExtendedUser }) {
                     }}
                     saveData={saveData}
                     label={"Name"}
+                    pending={pending}
                 />
                 <InfoItem
                     value={userData["campus"]}
@@ -56,6 +80,7 @@ export default function Profile({ user }: { user: ExtendedUser }) {
                     }}
                     saveData={saveData}
                     label={"Campus"}
+                    pending={pending}
                 />
             </List>
         </section>
