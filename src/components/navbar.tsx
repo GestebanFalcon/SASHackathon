@@ -1,6 +1,6 @@
 import Link from "next/link"
 import "./navbar.css"
-import { auth } from "@/drizzy/auth"
+import { auth } from "@/lib/drizzy/auth"
 
 export default async function Navbar() {
 
