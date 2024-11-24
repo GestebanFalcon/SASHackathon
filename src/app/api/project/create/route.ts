@@ -1,8 +1,8 @@
-import insertProject from "@/drizzy/queries/projects/insertProject";
-import getUserById from "@/drizzy/queries/users/getUserById";
-import updateUser from "@/drizzy/queries/users/updateUser";
-import { SelectUser } from "@/drizzy/schema/users";
-import { InsertProject } from "@/drizzy/schema/projects";
+import insertProject from "@/lib/drizzy/queries/projects/insertProject";
+import getUserById from "@/lib/drizzy/queries/users/getUserById";
+import updateUser from "@/lib/drizzy/queries/users/updateUser";
+import { SelectUser } from "@/lib/drizzy/schema/users";
+import { InsertProject } from "@/lib/drizzy/schema/projects";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {

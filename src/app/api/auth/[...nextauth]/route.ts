@@ -1,4 +1,4 @@
-import { handlers } from "../../../../drizzy/auth"
+import { handlers } from "../../../../lib/drizzy/auth"
 import AzureAD from "next-auth/providers/azure-ad"
 import Github from "next-auth/providers/github"
 

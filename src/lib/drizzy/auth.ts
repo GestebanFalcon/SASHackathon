@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { db } from "@/drizzy/db";
-import { accounts, users } from "@/drizzy/schema/users";
+import { db } from "@/lib/drizzy/db";
+import { accounts, users } from "@/lib/drizzy/schema/users";
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";
 import { config } from "dotenv";
 import Credentials from "next-auth/providers/credentials";
@@ -32,12 +32,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 console.log(`${email} - ${password}`);
 
                 if (typeof email !== "string" || typeof password !== "string") {
+                    return null;
                     throw new Error("Invalid credentials");
                 }
 
                 const user = await getUserByEmail(email);
                 if (!user?.hashedPassword) {
                     console.log("aww man");
+                    return null;
                     throw new Error("Invalid credentials");
                 }
 
@@ -45,6 +47,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 console.log(correctPassword);
                 if (!correctPassword) {
                     console.log("Aww man");
+                    return null;
                     throw new Error("Invalid credentials");
                 }
                 console.log("awesome")

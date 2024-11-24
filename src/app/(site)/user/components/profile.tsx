@@ -1,10 +1,10 @@
 "use client"
 
-import { SelectUser } from "@/drizzy/schema/users";
+import { SelectUser } from "@/lib/drizzy/schema/users";
 import { Divider, List, ListItem } from "@mui/material";
 import "../user.css";
 import InfoItem from "./infoItem";
-import updateUser from "@/drizzy/queries/users/updateUser";
+import updateUser from "@/lib/drizzy/queries/users/updateUser";
 import { ExtendedUser } from "@/next-auth";
 import { useState } from "react";
 import { updateProfile } from "@/actions/updateProfile";

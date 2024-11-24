@@ -1,5 +1,5 @@
-import { auth } from "@/drizzy/auth";
-import getUserById from "@/drizzy/queries/users/getUserById";
+import { auth } from "@/lib/drizzy/auth";
+import getUserById from "@/lib/drizzy/queries/users/getUserById";
 import { redirect, RedirectType } from "next/navigation";
 import Profile from "../components/profile";
 

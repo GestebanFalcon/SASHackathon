@@ -1,5 +1,5 @@
-import { db } from "@/drizzy/db";
-import { SelectUser, users } from "@/drizzy/schema/users";
+import { db } from "@/lib/drizzy/db";
+import { SelectUser, users } from "@/lib/drizzy/schema/users";
 import { eq } from "drizzle-orm";
 
 export default async function updateUser(id: SelectUser["id"], updatedUser: Partial<Omit<SelectUser, "id">>) {

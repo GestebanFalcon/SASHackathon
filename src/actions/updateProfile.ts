@@ -1,6 +1,6 @@
 "use server"
-import { auth } from "@/drizzy/auth";
-import updateUser from "@/drizzy/queries/users/updateUser";
+import { auth } from "@/lib/drizzy/auth";
+import updateUser from "@/lib/drizzy/queries/users/updateUser";
 import { ExtendedUser } from "@/next-auth";
 import { redirect } from "next/navigation";
 

@@ -1,4 +1,4 @@
-import { signIn } from "@/drizzy/auth"
+import { signIn } from "@/lib/drizzy/auth"
 
 export function SignIn() {
     return (

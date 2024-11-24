@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import { db } from "@/drizzy/db";
-import { SelectUser, users } from "@/drizzy/schema/users";
+import { db } from "@/lib/drizzy/db";
+import { SelectUser, users } from "@/lib/drizzy/schema/users";
 
 export default async function getUserById(id: SelectUser['id']) {
 

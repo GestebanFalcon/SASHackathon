@@ -1,7 +1,7 @@
 "use client"
 
 import { ReactNode, useState } from "react";
-import { SelectUser } from "@/drizzy/schema/users";
+import { SelectUser } from "@/lib/drizzy/schema/users";
 import EditIcon from '@mui/icons-material/Edit';
 import EditOffIcon from '@mui/icons-material/EditOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';

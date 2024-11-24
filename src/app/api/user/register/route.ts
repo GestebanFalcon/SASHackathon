@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { UserData } from "@/types/userData";
 import bcrypt from "bcrypt";
-import insertUser from "@/drizzy/queries/users/insertUser";
+import insertUser from "@/lib/drizzy/queries/users/insertUser";
 
 export async function POST(req: NextRequest) {
     const { data }: { data: UserData } = await req.json();
