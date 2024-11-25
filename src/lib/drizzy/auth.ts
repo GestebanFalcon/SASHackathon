@@ -77,6 +77,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             if (token.sub && session.user) {
                 session.user.id = token.sub as string;
                 session.user.campus = token.campus;
+                session.user.projectId = token.projectId;
             }
 
             return session;

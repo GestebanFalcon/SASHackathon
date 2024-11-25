@@ -44,7 +44,7 @@ export default function Profile({ userData, setUserData, update }: { userData: E
     }
 
     return (
-        <section className="profileOuter">
+        <section className="paper">
             <h1>User Info</h1>
             <List>
                 <InfoItem
