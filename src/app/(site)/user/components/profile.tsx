@@ -6,13 +6,13 @@ import "../user.css";
 import InfoItem from "./infoItem";
 import updateUser from "@/lib/drizzy/queries/users/updateUser";
 import { ExtendedUser } from "@/next-auth";
-import { useEffect, useState, useTransition } from "react";
+import { Dispatch, SetStateAction, useEffect, useState, useTransition } from "react";
 import { updateProfile } from "@/actions/updateProfile";
-import { useSession } from "next-auth/react";
+import { UpdateSession, useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
-export default function Profile() {
+export default function Profile({ userData, setUserData, update }: { userData: ExtendedUser, setUserData: Dispatch<SetStateAction<ExtendedUser>>, update: UpdateSession }) {
 
-    const { data: session, update } = useSession();
     // console.log(session);
     // const user = session?.user;
     // if (!user) {
@@ -24,15 +24,8 @@ export default function Profile() {
     //     )
     // }
 
-    const [userData, setUserData] = useState<ExtendedUser>({});
-
     const [pending, setTransition] = useTransition();
 
-    useEffect(() => {
-        if (session && session.user) {
-            setUserData(session.user);
-        }
-    }, [session])
 
     const keys = ["name", "campus", "email"] as Array<keyof ExtendedUser>;
 
@@ -51,7 +44,6 @@ export default function Profile() {
     }
 
     return (
-        session &&
         <section className="profileOuter">
             <h1>User Info</h1>
             <List>

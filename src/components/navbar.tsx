@@ -15,7 +15,7 @@ export default async function Navbar() {
             </div>
             <div className="navRight">
                 {session ? (
-                    <AuthWrapper><ProfileButton /></AuthWrapper>
+                    <AuthWrapper><ProfileButton session={session} /></AuthWrapper>
                 ) : (
                     <Link href={"/auth/login"} className="registerLink">Sign In</Link>
                 )}
