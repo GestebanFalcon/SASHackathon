@@ -37,7 +37,7 @@ export default function Page() {
                     <section className="paper flexy col">
                         <div className="projectPadding">
                             <h3>You are currently not a member of a group</h3>
-                            <Link href="/"><i>Browse Groups</i></Link>
+                            <Link href="/projects"><i>Browse Groups</i></Link>
                         </div>
                     </section>
                 )

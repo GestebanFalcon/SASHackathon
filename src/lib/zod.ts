@@ -7,3 +7,8 @@ export const signInSchema = object({
     password: string({ required_error: "Password is required" })
         .min(1, "Password is required"),
 });
+
+export const createProjectSchema = object({
+    name: string({ required_error: "Name is required" })
+        .min(1, "Name is required")
+})

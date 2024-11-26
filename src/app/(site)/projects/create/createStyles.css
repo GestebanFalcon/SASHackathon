@@ -1,15 +1,7 @@
-.outer {
-    padding-top: 6rem;
-}
-
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
     margin-bottom: 1rem;
-}
-
-.yap {
-    font-size: small
 }
