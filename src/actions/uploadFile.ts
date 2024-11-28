@@ -6,7 +6,7 @@ import { writeObject } from "@/lib/gcp";
 export default async function uploadFile(formData: FormData) {
 
     const session = await auth();
-    if (!session) { return false };
+    if (!session) { return };
 
     try {
         const file = formData.get("file") as File;
@@ -14,10 +14,10 @@ export default async function uploadFile(formData: FormData) {
         if (file.size < 1) throw new Error("File is empty")
         await writeObject(file);
 
-        return true;
+        return;
     } catch (error) {
         console.error(error)
-        return false
+        return;
     }
 
 }

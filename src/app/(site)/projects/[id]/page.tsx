@@ -4,6 +4,7 @@ import "./projectsStyles.css";
 import getUsersByProjectId from "@/lib/drizzy/queries/users/getUsersByProjectId";
 import UserCard from "./userCard";
 import { Paper } from "@mui/material";
+import uploadFile from "@/actions/uploadFile";
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
 
@@ -36,6 +37,10 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                         ))}
                     </ul>
                 </section>
+                <form action={uploadFile}>
+                    <input type="file" name="file" />
+                    <button type="submit">submit</button>
+                </form>
             </div>
         </div>
     )
