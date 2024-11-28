@@ -69,7 +69,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             if (user.projectAdmin) token.projectAdmin = user.projectAdmin;
 
 
-            console.log("redoing token");
             return token;
 
         },

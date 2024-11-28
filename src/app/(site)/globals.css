@@ -1,6 +1,7 @@
 .main {
   width: 100%;
-
+  flex-grow: 1;
+  display: flex;
 }
 
 .outer {
@@ -16,6 +17,8 @@ body {
   width: 100%;
   margin: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   /* background-color: #EDF5FC; */
   background-color: #FDFFFC;
 }

@@ -1,0 +1,117 @@
+.base {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+
+}
+
+.sidebar {
+    width: 20rem;
+    border-right: 1px solid gray;
+    padding: 2rem 2rem;
+    background-color: #fcfcfc;
+    box-shadow: 2rem;
+}
+
+.sidebar h2 {
+    margin: 0;
+}
+
+.sidebarPaper {
+    background-color: #fefefe;
+    padding: 1rem 2rem;
+}
+
+.rightbarWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.rightbar {
+    width: 20rem;
+    border-left: 1px solid gray;
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.property {
+    display: flex;
+    align-items: center;
+}
+
+.propertyKey {
+    width: 40%;
+    margin-left: 0;
+    color: #484848;
+    font-size: 14px
+}
+
+.propertyValue {
+    margin-right: 0;
+    flex-grow: 1;
+    font-size: 17px;
+    color: black;
+}
+
+.label {
+    width: 30%;
+    color: #484848;
+    font-size: 14px;
+}
+
+ul {
+    padding: 0.5rem;
+}
+
+.usersBar ul {
+    margin: 0;
+    padding: 0;
+}
+
+.usersBar {
+    height: auto;
+    border-bottom: gray solid 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2rem;
+    background-color: #f8f8f8;
+}
+
+.userIcon {
+    height: 100%;
+    padding: 1rem;
+    background-color: #fdfdfd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: inherit;
+    margin: 0;
+}
+
+.userIcon h3 {
+    margin: 0.125rem;
+}
+
+.userIcon p {
+    margin: 0.125rem;
+    font-size: smaller
+}

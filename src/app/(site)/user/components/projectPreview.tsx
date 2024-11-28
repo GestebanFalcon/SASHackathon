@@ -15,10 +15,14 @@ export default function ProjectPreview({ projectId }: { projectId: string }) {
         const getData = async () => {
             setIsLoading(true);
             try {
-                const res = await fetch(`/api/${projectId}/getProject`, {
+                console.log("getting")
+                const res = await fetch(`/api/projects/${projectId}/getProject`, {
                     method: "GET"
                 });
-                const { project, error }: { project?: SelectProject, error?: string } = await res.json();
+                console.log(res);
+                const body: { project?: SelectProject, error?: string } = await res.json();
+                console.log(body);
+                const { project, error } = body;
                 if (project) { setProject(project) };
                 // will redirect in the future to the proper page
                 if (error) { setError(error) };
@@ -33,25 +37,27 @@ export default function ProjectPreview({ projectId }: { projectId: string }) {
 
 
     return (
-        <section className="paper flexy">
-            {isLoading && (
-                <>
-                    <Skeleton variant="text"></Skeleton>
-                    <Skeleton variant="circular" width={40} height={40}></Skeleton>
-                    <Skeleton variant="rectangular" height={60}></Skeleton>
-                    <Skeleton variant="rounded" height={60}></Skeleton>
-                </>
-            )}
-            {project && (
-                <Link href={`/project/${projectId}`}>
-                    <h1>{project.name}</h1>
-                </Link>
-            )}
-            {error && (
-                <Alert>{error}</Alert>
-            )}
+        <section className="paper">
+            <h1>Group</h1>
+            <div className="flexy">
+                {isLoading && (
+                    <>
+                        <Skeleton variant="text"></Skeleton>
+                        <Skeleton variant="circular" width={40} height={40}></Skeleton>
+                        <Skeleton variant="rectangular" height={60}></Skeleton>
+                        <Skeleton variant="rounded" height={60}></Skeleton>
+                    </>
+                )}
+                {project && (
+                    <Link href={`/projects/${projectId}`}>
+                        <h1>{project.name}</h1>
+                    </Link>
+                )}
+                {error && (
+                    <Alert>{error}</Alert>
+                )}
 
-
+            </div>
         </section>
     )
 }

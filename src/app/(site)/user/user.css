@@ -36,3 +36,7 @@ h3 {
 .mouse:hover {
     cursor: pointer
 }
+
+.flexgap {
+    gap: 3rem;
+}

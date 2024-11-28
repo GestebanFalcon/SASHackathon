@@ -20,7 +20,6 @@ export default function Page() {
         }
     }, [session])
 
-    console.log(session);
     const id = session?.user?.id;
     // if (!id) {
     //     console.log("crud")
@@ -28,13 +27,14 @@ export default function Page() {
     // }
     return (
         session &&
-        <div className="flexy outer">
+        <div className=" outer flexgap">
             <Profile userData={user} setUserData={setUser} update={update} />
             {
                 session.user.projectId ? (
                     <ProjectPreview projectId={session.user.projectId}></ProjectPreview>
                 ) : (
                     <section className="paper flexy col">
+                        <h1>Group</h1>
                         <div className="projectPadding">
                             <h3>You are currently not a member of a group</h3>
                             <Link href="/projects"><i>Browse Groups</i></Link>
