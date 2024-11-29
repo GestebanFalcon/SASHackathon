@@ -8,21 +8,30 @@
 }
 
 .sidebar {
-    width: 20rem;
-    border-right: 1px solid gray;
-    padding: 2rem 2rem;
-    background-color: #fcfcfc;
-    box-shadow: 2rem;
+    width: 14rem;
+    /* border-right: 1px solid gray; */
+    padding: 2rem 1.5rem;
+    background-color: #fdfdfd;
+    position: relative;
+    box-shadow: 0.5px 0px 2px #dddddd;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar h2 {
     margin: 0;
 }
 
+.sidebar li {
+    font-size: 12px
+}
+
+/* 
 .sidebarPaper {
     background-color: #fefefe;
     padding: 1rem 2rem;
-}
+} */
 
 .rightbarWrapper {
     flex-grow: 1;
@@ -86,13 +95,15 @@ ul {
 
 .usersBar {
     height: auto;
-    border-bottom: gray solid 1px;
+    border: gray solid 1px;
+    border-radius: 4px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     margin: 2rem;
     background-color: #f8f8f8;
+    overflow: hidden;
 }
 
 .userIcon {

@@ -18,15 +18,14 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
     return (
         <div className="base">
             <section className="sidebar">
-                <Paper className="sidebarPaper" elevation={2}>
-                    <h2>{project.name}</h2>
-                    <ul>
-                        <li className="property">
-                            <p className="propertyKey">Repo</p>
-                            <p className="propertyLabel">githublinkhere</p>
-                        </li>
-                    </ul>
-                </Paper>
+                <h2>{project.name}</h2>
+                <h3>settings</h3>
+                <ul>
+                    <li className="property">
+                        <p className="propertyKey">Repo</p>
+                        <p className="propertyLabel">githublinkhere</p>
+                    </li>
+                </ul>
             </section>
             <div className="content">
 

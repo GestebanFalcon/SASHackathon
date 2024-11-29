@@ -21,7 +21,7 @@ export default function InfoItem({ value, updateData, saveData, label, pending }
             <li className="info">
                 <p className="label">{label}</p>
                 <div className="value">{isEditing ? (
-                    <TextField type="text" value={value} onChange={e => { updateData(e.target.value) }} />
+                    <TextField fullWidth type="text" value={value} onChange={e => { updateData(e.target.value) }} />
                 ) : value}</div>
 
                 {isEditing ? (

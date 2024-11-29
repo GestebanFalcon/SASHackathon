@@ -13,10 +13,11 @@
 }
 
 .value {
+    padding-right: 3rem;
     margin-right: 0;
     flex-grow: 1;
     color: black;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 h1 {
