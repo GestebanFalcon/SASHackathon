@@ -5,8 +5,8 @@ config({ path: '.env.local' });
 
 export default defineConfig({
     schema: [
-        "./src/drizzy/schema/users.ts",
-        "./src/drizzy/schema/projects.ts"
+        "./src/lib/drizzy/schema/users.ts",
+        "./src/lib/drizzy/schema/projects.ts"
     ],
     out: "./migrations",
     dialect: "postgresql",
