@@ -53,6 +53,20 @@ export const accounts = pgTable(
     })
 )
 
+export const tokens = pgTable("verification_token", {
+    email: text("email").notNull()
+        .references(() => users.email, { onDelete: "cascade" }),
+    token: text("token")
+        .$defaultFn(() => crypto.randomUUID()),
+    expires: timestamp("expires").notNull()
+},
+    (token) => ({
+        compoundKey: primaryKey({
+            columns: [token.email, token.token]
+        })
+    })
+)
+
 // export const sessions = pgTable("session", {
 //     sessionToken: text("sessionToken").primaryKey(),
 //     userId: text("userId")
@@ -99,3 +113,5 @@ export const accounts = pgTable(
 
 export type SelectUser = typeof users.$inferSelect
 export type InsertUser = typeof users.$inferInsert
+export type SelectToken = typeof tokens.$inferSelect
+export type InsertToken = typeof tokens.$inferInsert
