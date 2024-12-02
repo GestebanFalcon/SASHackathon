@@ -2,6 +2,7 @@ import createNewToken from "@/actions/createNewToken";
 import { verifyToken } from "@/actions/verifyToken";
 import { Button, Card, Dialog, FormGroup, Skeleton } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 export default function VerifyEmailForm({ token }: { token?: string | null }) {
@@ -11,16 +12,20 @@ export default function VerifyEmailForm({ token }: { token?: string | null }) {
     const [sent, setSent] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    const router = useRouter();
 
     const verifyAction = useCallback(async () => {
         if (!token) return;
         try {
             const res = await verifyToken(token);
             if (res.error) {
-                setError(res.error)
+                setError(res.error);
             }
             if (res.success) {
-                setSuccess(res.success)
+                setSuccess(res.success + ": redirecting...");
+                setTimeout(() => {
+                    router.push("/user/dashboard");
+                }, 1000)
             }
             if (res.redirect) {
                 setRedirect(res.redirect);
