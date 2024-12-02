@@ -7,9 +7,6 @@ import {
     integer,
     uuid
 } from "drizzle-orm/pg-core"
-import postgres from "postgres"
-import { drizzle } from "drizzle-orm/postgres-js"
-import type { AdapterAccount } from "next-auth/adapters"
 import { projects } from "./projects"
 import { db } from "../db"
 
@@ -57,7 +54,7 @@ export const tokens = pgTable("verification_token", {
     email: text("email").notNull()
         .references(() => users.email, { onDelete: "cascade" }),
     token: text("token")
-        .$defaultFn(() => crypto.randomUUID()),
+        .$defaultFn(() => crypto.randomUUID()).notNull(),
     expires: timestamp("expires").notNull()
 },
     (token) => ({

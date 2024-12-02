@@ -1,4 +1,4 @@
-import AuthWrapper from "@/components/authWrapper";
+import AuthWrapper from "@/components/auth/authWrapper";
 import { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {

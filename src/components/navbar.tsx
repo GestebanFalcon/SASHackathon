@@ -1,8 +1,8 @@
 import Link from "next/link"
 import "./navbar.css"
 import { auth } from "@/lib/drizzy/auth"
-import AuthWrapper from "./authWrapper"
-import ProfileButton from "./profileButton"
+import AuthWrapper from "./auth/authWrapper"
+import ProfileButton from "./user/profileButton"
 
 export default async function Navbar() {
 

@@ -3,7 +3,7 @@ import { auth } from "@/lib/drizzy/auth";
 import getUserById from "@/lib/drizzy/queries/users/getUserById";
 import { redirect, RedirectType } from "next/navigation";
 import Profile from "../components/profile";
-import AuthWrapper from "@/components/authWrapper";
+import AuthWrapper from "@/components/auth/authWrapper";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { ExtendedUser } from "@/next-auth";

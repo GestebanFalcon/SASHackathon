@@ -3,7 +3,7 @@ import { test, expect } from "vitest";
 import generateToken from "../src/lib/drizzy/queries/tokens/generateToken";
 
 test("Send email with retest", async () => {
-    const res = await sendEmail();
+    const res = await sendEmail({ to: "gustavoestebanfalcon@gmail.com", subject: "Test :)", content: ("Super Cool test") });
 
     console.log(res);
 

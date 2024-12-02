@@ -3,7 +3,7 @@
 import { SelectUser } from "@/lib/drizzy/schema/users";
 import { Button, Divider, List, ListItem, Skeleton, TextField } from "@mui/material";
 import "../user.css";
-import InfoItem from "../../../../components/infoItem";
+import InfoItem from "../../../../components/user/infoItem";
 import updateUser from "@/lib/drizzy/queries/users/updateUser";
 import { ExtendedUser } from "@/next-auth";
 import { Dispatch, SetStateAction, useEffect, useState, useTransition } from "react";

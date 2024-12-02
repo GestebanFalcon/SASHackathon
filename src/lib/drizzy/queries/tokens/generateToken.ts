@@ -15,6 +15,11 @@ export const insertToken = async (data: InsertToken) => {
     return token;
 }
 
+export const getTokenByToken = async (tokenString: string) => {
+    const [token] = await db.select().from(tokens).where(() => eq(tokens.token, tokenString));
+    return token;
+}
+
 export default async function generateToken(email: SelectToken["email"]) {
 
     const existingToken = await getTokenByEmail(email);

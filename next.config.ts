@@ -6,7 +6,11 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: "10mb"
     }
+  },
+  env: {
+    SERVER_URL: "http://localhost:3000"
   }
+
 };
 
 export default nextConfig;
