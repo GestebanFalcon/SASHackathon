@@ -50,7 +50,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
                     <TextField label="Password" type="password" name="password"></TextField>
                     <Button color="success" type="submit" >Sign In</Button>
                     {(error === "incorrect") && (<Alert severity="error">Incorrect email or password</Alert>)}
-                    {(error === "invalid") && (<Alert severity="error">Invalid data</Alert>)}
+                    {(error === "invalid") && (<Alert severity="error">Invalid data</Alert>)}   
                 </form>
                 <p className="yap">Dont have an account? <Link href={"/auth/register"}>Register Here</Link></p>
             </section>

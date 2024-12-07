@@ -2,7 +2,6 @@
 import { signOut } from "@/lib/drizzy/auth";
 
 const handleSignOut = async () => {
-
     await signOut();
 }
 

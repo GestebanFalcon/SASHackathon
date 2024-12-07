@@ -1,11 +1,9 @@
 "use client"
 
 import handleSignOut from "@/actions/handleSignOut";
-import { signOut } from "@/lib/drizzy/auth";
 import { AccountBox } from "@mui/icons-material"
 import { Menu, MenuItem } from "@mui/material"
 import { Session } from "next-auth";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react"
 
@@ -48,7 +46,7 @@ export default function ProfileButton({ session }: { session: Session }) {
                 }}
             >
                 <MenuItem onClick={handleClose}><Link href="/user/dashboard">View Profile</Link></MenuItem>
-                <MenuItem onClick={handleClose}><Link href="/auth/verify">Verify Email</Link></MenuItem>
+                {!session.user?.emailVerified && <MenuItem onClick={handleClose}><Link href="/auth/verify">Verify Email</Link></MenuItem>}
                 <MenuItem onClick={handleClose}><button onClick={handleSignOut} className="signOutButton">Sign Out</button></MenuItem>
 
             </Menu>

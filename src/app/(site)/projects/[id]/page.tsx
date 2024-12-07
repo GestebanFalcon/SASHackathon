@@ -28,18 +28,29 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                 </ul>
             </section>
             <div className="content">
+                <h1>Project Dashboard</h1>
+                <div className="contentPadding">
 
-                <section className="usersBar">
-                    <ul>
-                        {users.map((user, index) => (
-                            <UserCard user={user} key={index} />
-                        ))}
-                    </ul>
-                </section>
-                <form action={uploadFile}>
-                    <input type="file" name="file" />
-                    <button type="submit">submit</button>
-                </form>
+                    <section className="usersBar container">
+                        <ul>
+                            {users.map((user, index) => (
+                                <UserCard user={user} key={index} />
+                            ))}
+                        </ul>
+                    </section>
+
+                    <div className="bottomDashboardLayout">
+                        <section className="outer container">
+                            <form action={uploadFile}>
+                                <input type="file" name="file" />
+                                <button type="submit">submit</button>
+                            </form>
+                        </section>
+                        <section className="outer container">
+
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -9,6 +9,7 @@ export default async function UserCard({ user }: { user: ExtendedUser }) {
                 <h3>{user.name}</h3>
                 <p>{user.email}</p>
                 <p>{user.campus}</p>
+                <p className={`userRole ${user.projectAdmin && "userAdmin"}`}>{user.projectAdmin ? "Admin" : "Member"}</p>
             </div>
         </Link>
     )

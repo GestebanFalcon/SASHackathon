@@ -5,6 +5,7 @@ export type ExtendedUser = DefaultSession["user"] & {
     campus?: string | null,
     projectId?: string | null,
     projectAdmin?: boolean | null
+    emailVerified?: Date | null
 
 };
 
@@ -26,6 +27,6 @@ declare module "next-auth/jwt" {
         campus?: string,
         projectId?: string,
         projectAdmin?: boolean,
-
+        emailVerified?: Date | null;
     }
 }

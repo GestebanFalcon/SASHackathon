@@ -61,7 +61,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             const id = token.sub;
 
             const user = await getUserById(id);
-
+            if (user.emailVerified) token.emailVerified = user.emailVerified;
             if (user.email) token.email = user.email;
             if (user.name) token.name = user.name;
             if (user.campus) token.campus = user.campus;
@@ -77,6 +77,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 session.user.id = token.sub as string;
                 session.user.campus = token.campus;
                 session.user.projectId = token.projectId;
+                if (token.emailVerified) session.user.emailVerified = token.emailVerified;
             }
 
             return session;
