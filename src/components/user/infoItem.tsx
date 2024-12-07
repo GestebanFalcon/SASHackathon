@@ -11,7 +11,7 @@ import { useFormStatus } from "react-dom";
 import { ExtendedUser } from "@/next-auth";
 
 export default function InfoItem({ value, updateData, saveData, label, pending }: {
-    value: string | boolean | null | undefined, label: string, updateData: Function, saveData: () => Promise<boolean>, pending: boolean;
+    value: string | boolean | null | undefined, label: string, updateData: (data: string) => void, saveData: () => Promise<boolean>, pending: boolean;
 }) {
 
     const [isEditing, setIsEditing] = useState(false);

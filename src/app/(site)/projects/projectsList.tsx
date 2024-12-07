@@ -15,7 +15,7 @@ export default function ProjectsList({ projects }: { projects: SelectProject[] }
             <List>
                 {
                     projects.map(project => (
-                        <ListItem>{project.name}</ListItem>
+                        <ListItem key={project.id}>{project.name}</ListItem>
                     ))
                 }
 
